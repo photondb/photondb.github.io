@@ -1,0 +1,12 @@
+title: PhotonDB
+description: >-
+  An experiment project to build a high performance data store in Rust.
+
+url: "https://photondb.io"
+github_username: photondb
+twitter_username: photondb
+
+# Build settings
+theme: minima
+plugins:
+  - jekyll-feed
