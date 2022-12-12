@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "The space reclamation of PhotonDB"
+mathjax: true
 ---
 
 # Background
@@ -58,7 +59,7 @@ Assuming there are $k$ page files arranged in any order, reclaiming one at a tim
 
 $Cost = \sum_{i=1}^{k} c_i(t_0) - \sum_{i=1}^{k}-\frac{dc_i(t_0)}{dt}(t_i-t_0)$
 
-Now the problem is finding an order of page files that minimizes the total cost. $Cost$ is minimized when the second sum on the right-hand side is maximized. Given two sets of positive numbers X and Y, with $||X|| = ||Y||$, $\sum x y$ is maximized when $X = {x_i}$ and $Y = {y_i}$ are both ordered in the same way, i.e., $x_i ≥ x_j iff y_i ≥ y_j$. Since the sequence of $t_i-t_0$ is sorted incrementally, to maximize the second sum, the decline rates should also be sorted in increasing order. Therefore, to minimize the total cost, the page files with the smallest decline rate are prioritized and the page files with the largest decline rate are processed last.
+Now the problem is finding an order of page files that minimizes the total cost. $Cost$ is minimized when the second sum on the right-hand side is maximized. Given two sets of positive numbers X and Y, with $\|X\| = \|Y\|$, $\sum x y$ is maximized when $X = {x_i}$ and $Y = {y_i}$ are both ordered in the same way, i.e., $x_i ≥ x_j, \ iff \ \  y_i ≥ y_j$. Since the sequence of $t_i-t_0$ is sorted incrementally, to maximize the second sum, the decline rates should also be sorted in increasing order. Therefore, to minimize the total cost, the page files with the smallest decline rate are prioritized and the page files with the largest decline rate are processed last.
 
 We call the selection strategy given by the above formula the Min Decline Rate strategy. It is intuitive: if the cost can decline significantly over time in the future, then it is worthwhile to wait for some time before processing.
 
@@ -72,7 +73,7 @@ Further, the IO cost decline rate is:
 
 $\frac{d(Cost)}{dt} = (\frac{-2}{E^2})(\frac{dF}{du}) \approx \frac{−2(1 − E)}{E^2}f\Delta E$
 
-Where $f$ is the update frequency of delta pages and $\delta E$ is the rate of change of $E$ with each update. The update frequency of the file is $f$ multiplied by the number of active pages.
+Where $f$ is the update frequency of delta pages and $\Delta E$ is the rate of change of $E$ with each update. The update frequency of the file is $f$ multiplied by the number of active pages.
 
 The update frequency of each page can be estimated as follows:
 

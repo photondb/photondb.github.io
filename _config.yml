@@ -9,3 +9,6 @@ twitter_username: photondb
 theme: minima
 plugins:
   - jekyll-feed
+
+# For mathjax
+markdown: kramdown
